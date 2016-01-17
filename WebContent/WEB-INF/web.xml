@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>copy of new sos</display-name>
+  <display-name>sos</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Relief</display-name>
+    <servlet-name>Relief</servlet-name>
+    <servlet-class>com.tgmc.Relief</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Relief</servlet-name>
+    <url-pattern>/Relief</url-pattern>
+  </servlet-mapping>
   <servlet>
     <description></description>
     <display-name>Aid</display-name>
@@ -23,15 +33,5 @@
   <servlet-mapping>
     <servlet-name>Donate</servlet-name>
     <url-pattern>/Donate</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Relief</display-name>
-    <servlet-name>Relief</servlet-name>
-    <servlet-class>com.tgmc.Relief</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Relief</servlet-name>
-    <url-pattern>/Relief</url-pattern>
   </servlet-mapping>
 </web-app>

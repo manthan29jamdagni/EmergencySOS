@@ -88,6 +88,11 @@
 			selectYears : 15
 		// Creates a dropdown of 15 years to control year
 		});
+		/*$("#jc").submit(function(event) {
+			event.preventDefault();
+			$('#submitted').openModal();
+			$("#jc")[0].reset();
+		});*/
 	</script>
 </body>
 </html>

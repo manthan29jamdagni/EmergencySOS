@@ -1,17 +1,14 @@
 package com.tgmc;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.bson.Document;
-
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
 
 public class Aid extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,21 +25,27 @@ public class Aid extends HttpServlet {
 		String email = request.getParameter("email");
 		String date = request.getParameter("date");
 		String sex = request.getParameter("group1");
-		
 		String purpose = request.getParameter("purpose");
-		MongoClient mongoClient = new MongoClient();
-		System.out.println("mongo client connected");
-		MongoDatabase mongoDB = mongoClient.getDatabase("tgmc");
-		System.out.println("database successfully connected");
-		mongoDB.getCollection("user").insertOne(
-				new Document("LoanApplicant", new Document()
-						.append("name", first_name + " " + last_name)
-						.append("email", email).append("date", date)
-						.append("sex", sex).append("purpose", purpose)));
-		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-		request.setAttribute("faid", "<script>alert('Success')</script>");
-		rd.forward(request, response);
-		mongoClient.close();
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("Database conne");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/sos", "root", "om");
+			System.out.println("Database connected...");
+			String q = "INSERT INTO user(firstname,lastname,email,dob,sex,purpose) VALUES (?,?,?,?,?,?)";
+			PreparedStatement ps = con.prepareStatement(q);
+			ps.setString(1, first_name);
+			ps.setString(2, last_name);
+			ps.setString(3, email);
+			ps.setString(4, date);
+			ps.setString(5, sex);
+			ps.setString(6, purpose);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	protected void doGet(HttpServletRequest request,

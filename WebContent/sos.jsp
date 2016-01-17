@@ -1,16 +1,6 @@
-<%@page import="com.jaunt.UserAgent"%>
-<%@page import="com.jaunt.JNode"%>
-<%@page import="com.jaunt.JauntException"%>
-<%@page import="org.bson.json.JsonParseException"%>
-<%@page import="com.mongodb.Block"%>
-<%@page import="org.bson.Document"%>
-<%@page import="com.mongodb.client.FindIterable"%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="com.mongodb.MongoClient" %>
-<%@page import="com.mongodb.client.MongoDatabase" %>
-<%@page import="java.util.*" %>
-<%@page import="java.io.PrintWriter" %>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -126,7 +116,7 @@
 					</div>
 					<div class="row">
 						<div class="input-field col s12">
-							<input id="item" type="text" class="validate" name="item" >
+							<input id="item" type="text" class="validate" name="item">
 							<label for="item">Items Available</label>
 						</div>
 					</div>
@@ -142,7 +132,8 @@
 		<div class="modal-content">
 			<h4 class="black-text">Request Recorded</h4>
 			<br />
-			<h5 class="blue-text">Help will be send to you as soon as possible...</h5>
+			<h5 class="blue-text">Help will be send to you as soon as
+				possible...</h5>
 		</div>
 		<div class="modal-footer">
 			<button
@@ -154,53 +145,44 @@
 		<div class="modal-content">
 			<h4 class="black-text">Relief Centers</h4>
 			<table>
-		        <thead>
-		          <tr>
-		              <th>S.No</th>
-		              <th>Relief Centers</th>
-		              <th>Items Available</th>
-		          </tr>
-		        </thead>
-		
-		       <tbody id="tra"> 
-		       			
-		       	<%
-						final PrintWriter outp = new PrintWriter(response.getWriter());
-						MongoClient mongoClient = new MongoClient();
-						MongoDatabase mongoDatabase = mongoClient.getDatabase("temptgmc");
-						FindIterable<Document> iterable =mongoDatabase.getCollection("relief").find();
-						iterable.forEach(new Block<Document>(){
-							public void apply(final Document document){
-								String text=document.toJson();
-								
-								try
-								{	
-									UserAgent userAgent = new UserAgent();
-									userAgent.openJSON(text);
-									JNode searchResultPlace = userAgent.json.findEvery("Place");
-									JNode searchResultItems = userAgent.json.findEvery("Item");
-									  System.out.println("Search result for Place:\n" + searchResultPlace);
-									  System.out.println("Search result for Item:\n" + searchResultItems);
-									  String Plc=searchResultPlace.toString();
-									  Plc=Plc.substring(2,(Plc.length()-3));
-									  System.out.println("Actual Answer for Place: "+Plc);
-									  String itm=searchResultItems.toString();
-									  itm=itm.substring(2,(itm.length()-3));
-									  System.out.println("Actual Answer for Items:"+itm);
-									  outp.println("<script type=\"text/javascript\" src=\"js/jquery-2.1.4.min.js\"></script>");
-									  outp.println("<script>$(function(){$('#tra').append(\"<tr><td></td><td>"+Plc+"</td><td>"+itm+"</td></tr>\")});</script>");
-									}  
-								catch(JauntException e){e.printStackTrace();}								  
-								
-							}
-							
-						});
-						
-						mongoClient.close();
-						%>
-					</tbody>
-		      </table>
-            
+				<thead>
+					<tr>
+						<th>S.No</th>
+						<th>Relief Centers</th>
+						<th>Places</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<%
+						int counter = 1;
+						Class.forName("com.mysql.jdbc.Driver");
+						Connection con = DriverManager.getConnection(
+								"jdbc:mysql://localhost:3306/sos", "root", "om");
+						String sql = "select * from relief";
+						PreparedStatement ps = con.prepareStatement(sql);
+						ResultSet rs = ps.executeQuery();
+						while (rs.next()) {
+					%>
+					<tr>
+						<td><%=counter%></td>
+						<td><%=rs.getString("place")%></td>
+						<td><%=rs.getString("items")%></td>
+					</tr>
+
+					<%
+						counter++;
+						}
+					%>
+
+				</tbody>
+
+			</table>
+
+
+
+
+
 		</div>
 		<div class="modal-footer">
 			<a class="waves-effect waves-green btn-flat modal-action modal-close">Close</a>
@@ -221,7 +203,6 @@
 		});
 		$("#searchall").on('click', function() {
 			$('#search').openModal();
-			
 		});
 	</script>
 </body>

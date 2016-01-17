@@ -1,17 +1,15 @@
 package com.tgmc;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.bson.Document;
-
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
 
 public class Donate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,20 +29,28 @@ public class Donate extends HttpServlet {
 		String amount = request.getParameter("amount");
 		String address = request.getParameter("address");
 		if (name == "" || amount == "" || address == "") {
-			RequestDispatcher r = request.getRequestDispatcher("/sos.jsp");
+			RequestDispatcher r = request.getRequestDispatcher("sos.jsp");
 			r.forward(request, response);
 		}
-		MongoClient mongoClient = new MongoClient();
-		System.out.println("mongo client connected");
-		MongoDatabase mongoDB = mongoClient.getDatabase("temptgmc");
-		System.out.println("database successfully connected");
-		mongoDB.getCollection("donate").insertOne(
-				new Document("Donater", new Document().append("name", name)
-						.append("amount", amount).append("address", address)));
-		mongoClient.close();
-		RequestDispatcher r = request.getRequestDispatcher("/index.jsp");
-		request.setAttribute("faid","<script>alert('Thanks For Showing Interest in Donating to us we have your address we'll contact you soon!!')</script>");
-		r.forward(request, response);
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			System.out.println("Loaded Driver...");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/sos", "root", "");
+			System.out.println("Database connected...");
+			String q = "insert into support(name,amount,address) values( ?,?,?)";
+			PreparedStatement pr = con.prepareStatement(q);
+			pr.setString(1, name);
+			pr.setString(2, amount);
+			pr.setString(3, address);
+			int x = pr.executeUpdate();
+			if (x != 0) {
+				RequestDispatcher rd = request.getRequestDispatcher("sos.jsp");
+				rd.forward(request, response);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
