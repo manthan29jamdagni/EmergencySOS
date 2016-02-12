@@ -14,26 +14,15 @@
 <body>
 	<div id="gmap_canvas"></div>
 	<div class="actions">
-		<!-- <div class="button">
-			<label for="gmap_where">City:</label> <input id="gmap_where"
-				type="text" name="gmap_where" value="Dehradun" />
-		</div> -->
-		<div id="btn1" class="button" onclick="findPlaces(); return false;">Show
+		<div id="btn1" class="button" onclick="findBlood(); return false;">Show
 			Blood Banks from Current Location</div>
 	</div>
-
-	<div id="modal1" class="modal">
-		<div class="modal-content"></div>
-		<div class="modal-footer">
-			<a class="waves-effect waves-green btn-flat modal-action modal-close">Close</a>
-		</div>
-	</div>
-
+	<input type="hidden" id="lat" name="lat" value="30.3164945" /> <input
+			type="hidden" id="lng" name="lng" value="78.0321918" />
+	
 	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/materialize.min.js"></script>
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script type="text/javascript"
-		src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByTDh_WosPzE3KjFZHVbI7PQFQf_ZEt20&libraries=places"></script>
 	<script src="js/bloodbanksjs.js"></script>
 </body>
 </html>
