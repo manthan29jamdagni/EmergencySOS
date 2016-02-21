@@ -22,20 +22,20 @@
 	<div class="col s12 m12 l12"
 		style="padding-left: 15%; padding-right: 15%; padding-bottom: 100px; margin-top: 30px;">
 		<div class="z-depth-5">
-			<form action="Aid" method="post" class="col s12">
+			<form action="addFinancial" method="post" class="col s12">
 				<div class="row">
 					<div class="input-field col s6">
-						<input name="first_name" type="text" class="validate" required>
+						<input name="first_name" type="text" class="validate" length=30 required>
 						<label for="first_name">First Name</label>
 					</div>
 					<div class="input-field col s6">
-						<input name="last_name" type="text" class="validate" required>
+						<input name="last_name" type="text" class="validate" length=30 required>
 						<label for="last_name">Last Name</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<input name="email" type="email" class="validate" required>
+						<input name="email" type="email" class="validate" length=30 required>
 						<label for="email">Email</label>
 					</div>
 				</div>
@@ -45,14 +45,14 @@
 						<label class="active" for="date">Birth Date</label>
 					</div>
 					<div class="input-field col s3" style="margin-top: 10px;">
-						<input name="group1" value="m" type="radio" id="test1" /> <label
+						<input name="group1" value="m" type="radio" id="test1" checked/> <label
 							for="test1">Male</label> <input name="group1" type="radio"
 							id="test2" value="f" /> <label for="test2">Female</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-						<textarea name="purpose" class="materialize-textarea" required></textarea>
+						<textarea name="purpose" class="materialize-textarea" length=100 required></textarea>
 						<label for="textarea1">Purpose of Loan</label>
 					</div>
 				</div>
@@ -84,15 +84,9 @@
 	<script src="js/materialize.min.js"></script>
 	<script type="text/javascript">
 		$('.datepicker').pickadate({
-			selectMonths : true, // Creates a dropdown to control month
+			selectMonths : true,
 			selectYears : 15
-		// Creates a dropdown of 15 years to control year
 		});
-		/*$("#jc").submit(function(event) {
-			event.preventDefault();
-			$('#submitted').openModal();
-			$("#jc")[0].reset();
-		});*/
 	</script>
 </body>
 </html>

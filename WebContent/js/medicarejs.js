@@ -1,7 +1,20 @@
 var geocoder;
 var map;
+var centerPos;
 var markers = Array();
 var infos = Array();
+
+$(window).resize(function() {
+	$("#gmap_canvas").width($(window).width());
+	$("#gmap_canvas").height($(window).height());
+	if (map) map.setCenter(centerPos);
+});
+
+$(document).ready(function() {
+	$("#gmap_canvas").width($(window).width());
+	$("#gmap_canvas").height($(window).height());
+	if (map) map.setCenter(centerPos);
+});
 
 function initialize() {
 	// prepare Geocoder
@@ -53,7 +66,8 @@ function findAddress() {
 
 			// we will center map
 			var addrLocation = results[0].geometry.location;
-			map.setCenter(addrLocation);
+			centerPos = addrLocation;
+			map.setCenter(centerPos);
 
 			// store current coordinates into hidden variables
 			document.getElementById('lat').value = results[0].geometry.location
@@ -205,7 +219,8 @@ function mylocation() {
 			};
 			infoWindow.setPosition(pos);
 			infoWindow.setContent('Location found.');
-			map.setCenter(pos);
+			centerPos = pos;
+			map.setCenter(centerPos);
 			var lati = position.coords.latitude;
 			var longi = position.coords.longitude;
 			document.getElementById('lat').value = lati;

@@ -4,34 +4,4 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>Relief</display-name>
-    <servlet-name>Relief</servlet-name>
-    <servlet-class>com.tgmc.Relief</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Relief</servlet-name>
-    <url-pattern>/Relief</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Aid</display-name>
-    <servlet-name>Aid</servlet-name>
-    <servlet-class>com.tgmc.Aid</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Aid</servlet-name>
-    <url-pattern>/Aid</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>Donate</display-name>
-    <servlet-name>Donate</servlet-name>
-    <servlet-class>com.tgmc.Donate</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Donate</servlet-name>
-    <url-pattern>/Donate</url-pattern>
-  </servlet-mapping>
 </web-app>
