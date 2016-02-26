@@ -46,7 +46,7 @@
 				<div class="card-content ">
 					<span class="card-title black-text">Donate</span>
 					<p>Please help us by donating a bit from your immense wealth,
-						you know a glass from an ocean will not affect it's volume</p>
+						you know a glass from an ocean will not affect it's volume but a glass of water may save someone's life.</p>
 				</div>
 				<div class="card-action teal white-text">
 					<a style="cursor: pointer;" id="donation">Donate</a>
@@ -149,7 +149,7 @@
 		<div class="modal-content">
 			<h4 class="black-text">Need Help, but No Internet?</h4>
 			<h5 class="black-text">SAVE this number to SECURE your Future!</h5><h6></h6>
-			<h5 class="indigo-text"><i class="material-icons left">&#xE0B0;</i> +447400077979 </h5>
+			<h5 class="indigo-text"><i class="material-icons left">&#xE0B0;</i> +12056602113 </h5>
 			<h5 class="blue-text">SMS on this number to find RELIEF Centers and help will reach your address ASAP...</h5>
 			<h5 class="cyan-text">SMS, RELIEF <i>&lt;your pincode&gt;</i> <i>&lt;your address&gt;</i></h5>
 			<h5 class="teal-text">Example: <b>RELIEF 248001 39/11 Canal Road, Jakhan</b></h5>

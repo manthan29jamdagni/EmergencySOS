@@ -147,7 +147,7 @@
 						<i class="material-icons">filter_drama</i>Made By:
 					</div>
 					<div class="collapsible-body">
-						<p>Amit Phulera, Manthan Jamdagni, Nitin Pathak</p>
+						<p><a href="http://amitphulera.com" target="_blank">Amit Phulera</a>,<a href="http://manthanjamdagni.com" target="_blank"> Manthan Jamdagni</a>,<a href="http://nitinpathak.com" target="_blank"> Nitin Pathak</p>
 					</div>
 				</li>
 			</ul>
