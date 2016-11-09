@@ -1,6 +1,7 @@
 # EmergencySOS
 
-APPLICATION URL-http://emergencysos.mybluemix.net/
+APPLICATION URL1-http://emergencysos.mybluemix.net/
+APPLICATION URL2- http://emergencysos.azurewebsites.net/
 
 IF THE APPLICATION URL IS NOT WORKING PLEASE CONTACT US ON -
 
